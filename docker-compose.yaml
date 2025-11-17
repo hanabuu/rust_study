@@ -1,0 +1,10 @@
+  services:
+    study:           # コンテナの名前の一部
+      build:
+        context: .
+      working_dir: /work
+      # command: /bin/bash  # これはなくてもいいかも
+      volumes:
+        - ./src:/work
+      stdin_open: true  # 開発用: 標準入力を開いたままにする
+      tty: true         # 開発用: 対話シェルを保持する
