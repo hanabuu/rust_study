@@ -1,5 +1,3 @@
-// [Rustで指定ディレクトリ内の全てのファイルのパスを取得する](https://qiita.com/Kanahiro/items/44cbc69a5d8849c8f00f)
-use std::error::Error;
 use std::fs;
 use std::path;
 
@@ -13,7 +11,7 @@ use std::path;
 ///
 /// # エラー
 /// 指定ディレクトリが存在しない、または読み取り権限が無い場合にはエラーを返します。
-fn read_dir(path: &str) -> Result<Vec<path::PathBuf>, Box<dyn Error>> {
+pub fn read_dir(path: &str) -> Result<Vec<path::PathBuf>, Box<dyn Error>> {
     // dirはstd::fs::ReadDir型. into_iter()によりイテレーターとしてパスを順次取得可能
     // [fs::ReadDir](https://doc.rust-lang.org/std/fs/struct.ReadDir.html)
     let dir: fs::ReadDir = fs::read_dir(path)?;
@@ -36,7 +34,7 @@ fn read_dir(path: &str) -> Result<Vec<path::PathBuf>, Box<dyn Error>> {
 ///
 /// # エラー
 /// 途中のディレクトリでアクセス不能な場合などにエラーを返します。
-fn read_dir_recursive(path: &path::Path) -> Result<Vec<path::PathBuf>, Box<dyn Error>> {
+pub fn read_dir_recursive(path: &path::Path) -> Result<Vec<path::PathBuf>, Box<dyn Error>> {
     let mut collected = Vec::new();
     for entry in fs::read_dir(path)? {
         let entry = entry?;
@@ -48,19 +46,4 @@ fn read_dir_recursive(path: &path::Path) -> Result<Vec<path::PathBuf>, Box<dyn E
         }
     }
     Ok(collected)
-}
-
-/// `read_dir` と `read_dir_recursive` を呼び出し、
-/// それぞれの結果を標準出力へ表示します。
-fn main() {
-    // 単一ディレクトリ内のみ
-    // let files = read_dir("../").unwrap();
-    // for file in files {
-    //     println!("{}", file.display());
-    // }
-    // 子ディレクトリも含めてすべてのファイルの列挙
-    let recursive_file = read_dir_recursive(path::Path::new("./testDir")).unwrap();
-    for file in recursive_file {
-        println!("{}", file.display());
-    }
 }
