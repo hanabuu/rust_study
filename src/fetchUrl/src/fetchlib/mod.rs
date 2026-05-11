@@ -1,0 +1,1 @@
+pub mod fetch_lib; // 同じディレクトリの fetch_lib.rs をモジュールとして読み込む
