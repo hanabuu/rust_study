@@ -43,6 +43,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     fetchlib::fetch_exec::async_fetch_url_with_client(&client, gitlab_api_url, &query_pairs),
   )?;
 
+  let requested_url = fetchlib::fetch_param::build_requested_url(gitlab_api_url, &query_pairs);
+
+  println!("Requested URL: {}", requested_url);
   println!("json: {}", json);
 
   Ok(())
