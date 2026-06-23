@@ -1,0 +1,20 @@
+{
+  "sample_json_data": [
+    {
+      "id": "p001",
+      "name": "test2",
+      "type": "json",
+      "path": "./data/tmp/sample/json/test2/sampleJson",
+      "price": 300,
+      "category": "test_category1"
+    },
+    {
+      "id": "p002",
+      "name": "test2",
+      "type": "json",
+      "path": "./data/tmp/sample/json/test2/sampleJson",
+      "price": 400,
+      "category": "test_category2"
+    }
+  ]
+}
